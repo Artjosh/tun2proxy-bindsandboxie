@@ -1,0 +1,13 @@
+{
+    "paths": {
+        "tun2socks": "C:\\Users\\arthu\\OneDrive\\Desktop\\vpn-proxy\\tun2socks.exe",
+        "wintun": "C:\\Users\\arthu\\OneDrive\\Desktop\\vpn-proxy\\wintun.dll",
+        "sandboxie_ini": "C:\\Windows\\Sandboxie.ini",
+        "sbie_ini_exe": "C:\\Program Files\\Sandboxie-Plus\\SbieIni.exe"
+    },
+    "proxies_list": [
+        "127.0.0.1:1080:user:pass",
+        "192.168.1.1:1080:user:pass"
+    ],
+    "last_shortcuts_dir": "C:/Users/arthu/OneDrive/Desktop/atalhos/arcanum"
+}
