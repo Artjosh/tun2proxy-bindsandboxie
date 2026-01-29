@@ -19,7 +19,7 @@ echo Usando tun2socks em: %TUN2SOCKS%
 echo ===================================================
 echo LIMPANDO PROCESSOS ANTIGOS...
 echo ===================================================
-taskkill /F /IM tun2socks.exe >nul 2>&1
+taskkill /F /IM tun2socks.exe
 timeout /t 2 /nobreak > nul
 
 :: Loop para iniciar proxies (assume até 10, ou ajustável)

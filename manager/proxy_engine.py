@@ -73,13 +73,15 @@ class ProxyEngine:
                  log(f"[{p.id}] ERROR: Interface {dev_name} failed to appear.")
                  continue
 
-            # Configure IP
+            # Configure IP with retry and verification
             local_ip = f"10.0.{p.id}.1"
             gateway = f"10.0.{p.id}.254"
             log(f"[{p.id}] Setting IP {local_ip}...")
             
-            self._set_ip(dev_name, local_ip, gateway)
-            log(f"[{p.id}] Ready.")
+            if self._set_ip(dev_name, local_ip, gateway, log=log):
+                log(f"[{p.id}] Ready.")
+            else:
+                log(f"[{p.id}] WARNING: Interface may not work correctly!")
 
         log("All proxies started.")
 
@@ -96,16 +98,48 @@ class ProxyEngine:
             time.sleep(0.5)
         return False
 
-    def _set_ip(self, name: str, ip: str, gateway: str):
-        # set address
-        subprocess.run([
-            "netsh", "interface", "ip", "set", "address", 
-            f"name={name}", "source=static", f"addr={ip}", 
-            "mask=255.255.255.0", f"gateway={gateway}"
-        ], stdout=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
+    def _set_ip(self, name: str, ip: str, gateway: str, log=None, max_retries: int = 3):
+        """Sets the IP address with verification and retry logic."""
+        for attempt in range(1, max_retries + 1):
+            # set address
+            subprocess.run([
+                "netsh", "interface", "ip", "set", "address", 
+                f"name={name}", "source=static", f"addr={ip}", 
+                "mask=255.255.255.0", f"gateway={gateway}"
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
+            
+            # set metric
+            subprocess.run([
+                "netsh", "interface", "ip", "set", "interface", 
+                name, "metric=500"
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
+            
+            # Wait a bit for IP to apply
+            time.sleep(0.5)
+            
+            # Verify IP was applied
+            if self._verify_ip(name, ip):
+                return True
+            
+            if log:
+                log(f"[{name}] IP verification failed (attempt {attempt}/{max_retries}), retrying...")
+            time.sleep(1)
         
-        # set metric
-        subprocess.run([
-            "netsh", "interface", "ip", "set", "interface", 
-            name, "metric=500"
-        ], stdout=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
+        if log:
+            log(f"[{name}] ERROR: Failed to set IP {ip} after {max_retries} attempts!")
+        return False
+    
+    def _verify_ip(self, name: str, expected_ip: str) -> bool:
+        """Verifies the interface has the expected IP address using PowerShell."""
+        try:
+            # Use PowerShell Get-NetIPAddress which is language-independent
+            ps_cmd = f'(Get-NetIPAddress -InterfaceAlias "{name}" -AddressFamily IPv4 -ErrorAction SilentlyContinue).IPAddress'
+            res = subprocess.run(
+                ["powershell", "-NoProfile", "-Command", ps_cmd],
+                capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW
+            )
+            actual_ip = res.stdout.strip()
+            return actual_ip == expected_ip
+        except Exception:
+            return False
+
