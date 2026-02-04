@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from typing import Dict, Any, List
 
 CONFIG_FILE = "config.json"
@@ -17,8 +18,14 @@ DEFAULT_CONFIG = {
 
 class ConfigManager:
     def __init__(self):
-        # Config is now in the project root (one level up from manager/)
-        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # Determine root_dir correctly whether running as distinct script or frozen exe
+        if getattr(sys, 'frozen', False):
+            # If frozen (PyInstaller), the exe is in the root directory we care about
+            root_dir = os.path.dirname(sys.executable)
+        else:
+            # If script, we are in manager/ so root is one up
+            root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            
         self.config_path = os.path.join(root_dir, CONFIG_FILE)
         self.config = self._load_config()
 

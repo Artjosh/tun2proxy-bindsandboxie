@@ -41,21 +41,27 @@ class SandboxManager:
 
     def scan_shortcuts(self, folder_path: str) -> Dict[str, List[SandboxShortcut]]:
         """
-        Scans folder for shortcuts strictly matching 'N-[boxname] appname.lnk'.
+        Scans folder for shortcuts matching 'N-[boxname] optional_appname.lnk'.
         Returns a dict keyed by 'group_id' (str) -> List[SandboxShortcut].
         """
         results = {}
         if not os.path.exists(folder_path):
             return results
 
-        pattern = re.compile(r"^(\d+)-\[(.+?)\] (.+)\.lnk$", re.IGNORECASE)
+        # Regex explanation:
+        # ^(\d+)-       : Starts with digits followed by hyphen (Group 1: ID)
+        # \[(.+?)\]     : Box name inside brackets (Group 2: Box Name)
+        # (?: (.+))?    : Optional space followed by App Name (Group 3: App Name)
+        # \.lnk$        : Ends with .lnk
+        pattern = re.compile(r"^(\d+)-\[(.+?)\](?: (.+))?\.lnk$", re.IGNORECASE)
 
         for filename in os.listdir(folder_path):
             match = pattern.match(filename)
             if match:
                 group_id = match.group(1)
                 box_name = match.group(2)
-                app_name = match.group(3)
+                # If group(3) is None, use a default name or the whole filename
+                app_name = match.group(3) if match.group(3) else "Shortcut"
                 
                 full_path = os.path.normpath(os.path.join(folder_path, filename))
                 
@@ -153,7 +159,8 @@ class SandboxManager:
         # Use netsh to list
         res = subprocess.run(
             ["netsh", "interface", "show", "interface"],
-            capture_output=True, text=True
+            capture_output=True, text=True,
+            creationflags=subprocess.CREATE_NO_WINDOW
         )
         if res.returncode == 0:
             # Skip header (usually first 3 lines)
@@ -166,3 +173,87 @@ class SandboxManager:
                     adapters.append(name)
         
         return adapters
+
+    # --- SPOOFING LOGIC ---
+    SPOOF_TEMPLATES = ["BlockAccessWMI", "HideInstalledPrograms"]
+    SPOOF_KEYS = {
+        "SandboxieAllGroup": "n",
+        "HideFirmwareInfo": "y",
+        "RandomRegUID": "y",
+        "HideDiskSerialNumber": "y",
+        "HideNetworkAdapterMAC": "y"
+    }
+
+    def is_box_spoofed(self, box_name: str) -> bool:
+        """
+        Checks if the box has the spoof settings.
+        We check a few key indicators to decide if it's 'Spoofado'.
+        """
+        # We'll use a simple heuristic: if at least one key unique to spoofing is set.
+        # Ideally we check all, but SbieIni buffering might be slow.
+        # Let's check 'HideNetworkAdapterMAC' and one Template.
+        try:
+            # Check a standard Key
+            cmd = [self.sbie_ini_exe, "query", box_name, "HideNetworkAdapterMAC"]
+            res = subprocess.run(cmd, capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW)
+            if "y" not in res.stdout.strip():
+                return False
+
+            # Check a Template
+            # Querying templates returns all of them. We check if ours is in the list.
+            cmd_tpl = [self.sbie_ini_exe, "query", box_name, "Template"]
+            res_tpl = subprocess.run(cmd_tpl, capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW)
+            if "BlockAccessWMI" not in res_tpl.stdout:
+                return False
+                
+            return True
+        except:
+            return False
+
+    def toggle_spoof(self, box_name: str, enable: bool):
+        """Adds or Removes the spoofing lines."""
+        flags = subprocess.CREATE_NO_WINDOW
+        
+        print(f"[DEBUG] toggle_spoof | Box: {box_name} | Enable: {enable}")
+        
+        if enable:
+            # ADD SETTINGS
+            for tpl in self.SPOOF_TEMPLATES:
+                # SbieIni 'set' might overwrite. 'append' ensures we add to the list.
+                cmd = [self.sbie_ini_exe, "append", box_name, "Template", tpl]
+                print(f"  [CMD] {' '.join(cmd)}")
+                res = subprocess.run(cmd, capture_output=True, text=True, creationflags=flags)
+                if res.stdout.strip(): print(f"    [OUT] {res.stdout.strip()}")
+                if res.stderr.strip(): print(f"    [ERR] {res.stderr.strip()}")
+            
+            for key, val in self.SPOOF_KEYS.items():
+                cmd = [self.sbie_ini_exe, "set", box_name, key, val]
+                print(f"  [CMD] {' '.join(cmd)}")
+                res = subprocess.run(cmd, capture_output=True, text=True, creationflags=flags)
+                if res.stdout.strip(): print(f"    [OUT] {res.stdout.strip()}")
+                if res.stderr.strip(): print(f"    [ERR] {res.stderr.strip()}")
+                
+        else:
+            # REMOVE SETTINGS
+            for tpl in self.SPOOF_TEMPLATES:
+                # To remove a specific template value, SbieIni might require 'clear' or manual editing
+                # But 'delete' on a Key usually deletes ALL.
+                # However, for Template, we might want to just remove specific ones.
+                # Trying 'delete Box Key Value' syntax which some SbieIni versions support
+                cmd = [self.sbie_ini_exe, "delete", box_name, "Template", tpl]
+                print(f"  [CMD] {' '.join(cmd)}")
+                res = subprocess.run(cmd, capture_output=True, text=True, creationflags=flags)
+                
+                # If that failed (stderr), try clearing key? No, that deletes all templates.
+                # Let's trust 'delete box template value' works or fails.
+                if res.stdout.strip(): print(f"    [OUT] {res.stdout.strip()}")
+                if res.stderr.strip(): print(f"    [ERR] {res.stderr.strip()}")
+                
+            # For keys, 'delete' might not be working as reported.
+            # Try setting to empty string to remove/clear the key.
+            for key in self.SPOOF_KEYS.keys():
+                cmd = [self.sbie_ini_exe, "set", box_name, key, ""] # Empty value to remove
+                print(f"  [CMD] {' '.join(cmd)}")
+                res = subprocess.run(cmd, capture_output=True, text=True, creationflags=flags)
+                if res.stdout.strip(): print(f"    [OUT] {res.stdout.strip()}")
+                if res.stderr.strip(): print(f"    [ERR] {res.stderr.strip()}")
