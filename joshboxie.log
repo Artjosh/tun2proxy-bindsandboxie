@@ -1,0 +1,166 @@
+[2026-03-13 01:12:59] STOP_ALL begin
+[2026-03-13 01:12:59] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 01:12:59] kill_by_name found_pids=[22232, 16064, 32316, 18368, 10364, 25984, 32384, 25032, 30056, 9228, 28464, 26956, 31196, 11240, 32708, 27520, 25532]
+[2026-03-13 01:12:59] kill_by_name pid=22232 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=16064 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=32316 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=18368 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=10364 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=25984 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=32384 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=25032 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=30056 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=9228 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=28464 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=26956 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=31196 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=11240 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=32708 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=27520 TerminateProcess=True
+[2026-03-13 01:12:59] kill_by_name pid=25532 TerminateProcess=True
+[2026-03-13 01:13:00] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 01:13:00] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 01:13:01] STOP_ALL end
+[2026-03-13 11:53:58] STOP_ALL begin
+[2026-03-13 11:53:58] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 11:53:58] kill_by_name found_pids=[24296, 22272, 27772, 31684, 13608, 22920, 25932, 28216, 18360, 33368, 10164, 27808, 7796, 7692, 29068, 33324, 8416]
+[2026-03-13 11:53:58] kill_by_name pid=24296 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=22272 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=27772 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=31684 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=13608 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=22920 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=25932 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=28216 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=18360 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=33368 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=10164 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=27808 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=7796 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=7692 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=29068 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=33324 TerminateProcess=True
+[2026-03-13 11:53:58] kill_by_name pid=8416 TerminateProcess=True
+[2026-03-13 11:53:59] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 11:53:59] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 11:53:59] STOP_ALL end
+[2026-03-13 11:55:37] STOP_ALL begin
+[2026-03-13 11:55:37] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 11:55:38] kill_by_name found_pids=[37796, 30240, 600, 33036, 33472, 3360, 19424, 27132]
+[2026-03-13 11:55:38] kill_by_name pid=37796 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=30240 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=600 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=33036 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=33472 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=3360 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=19424 TerminateProcess=True
+[2026-03-13 11:55:38] kill_by_name pid=27132 TerminateProcess=True
+[2026-03-13 11:55:39] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 11:55:39] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 11:55:39] STOP_ALL end
+[2026-03-13 11:55:55] STOP_ALL begin
+[2026-03-13 11:55:55] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 11:55:55] kill_by_name found_pids=[17532, 35740, 4044]
+[2026-03-13 11:55:55] kill_by_name pid=17532 TerminateProcess=True
+[2026-03-13 11:55:55] kill_by_name pid=35740 TerminateProcess=True
+[2026-03-13 11:55:55] kill_by_name pid=4044 TerminateProcess=True
+[2026-03-13 11:55:56] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 11:55:56] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 11:55:58] STOP_ALL removed_adapter=Proxy_10
+[2026-03-13 11:55:58] STOP_ALL end
+[2026-03-13 12:05:00] STOP_ALL begin
+[2026-03-13 12:05:00] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 12:05:00] kill_by_name found_pids=[12004, 33776, 20888, 25952, 17780, 12620]
+[2026-03-13 12:05:00] kill_by_name pid=12004 TerminateProcess=True
+[2026-03-13 12:05:00] kill_by_name pid=33776 TerminateProcess=True
+[2026-03-13 12:05:00] kill_by_name pid=20888 TerminateProcess=True
+[2026-03-13 12:05:00] kill_by_name pid=25952 TerminateProcess=True
+[2026-03-13 12:05:00] kill_by_name pid=17780 TerminateProcess=True
+[2026-03-13 12:05:00] kill_by_name pid=12620 TerminateProcess=True
+[2026-03-13 12:05:01] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 12:05:01] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 12:05:02] STOP_ALL end
+[2026-03-13 12:05:18] STOP_ALL begin
+[2026-03-13 12:05:18] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 12:05:18] kill_by_name found_pids=[]
+[2026-03-13 12:05:18] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 12:05:19] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 12:05:19] STOP_ALL end
+[2026-03-13 12:10:04] STOP_ALL begin
+[2026-03-13 12:10:04] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-13 12:10:04] kill_by_name found_pids=[17392, 20780, 35388]
+[2026-03-13 12:10:04] kill_by_name pid=17392 TerminateProcess=True
+[2026-03-13 12:10:04] kill_by_name pid=20780 TerminateProcess=True
+[2026-03-13 12:10:04] kill_by_name pid=35388 TerminateProcess=True
+[2026-03-13 12:10:05] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-13 12:10:05] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-13 12:10:05] STOP_ALL end
+[2026-03-14 01:03:11] STOP_ALL begin
+[2026-03-14 01:03:11] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-14 01:03:11] kill_by_name found_pids=[36756, 30444, 28208, 27100, 38564, 38412, 38264, 38268, 32164, 21588, 38056, 38720, 39208, 39080, 38832, 39568, 39048]
+[2026-03-14 01:03:11] kill_by_name pid=36756 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=30444 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=28208 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=27100 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38564 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38412 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38264 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38268 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=32164 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=21588 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38056 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38720 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=39208 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=39080 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=38832 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=39568 TerminateProcess=True
+[2026-03-14 01:03:11] kill_by_name pid=39048 TerminateProcess=True
+[2026-03-14 01:03:13] STOP_ALL powershell={'returncode': 0, 'stdout': '', 'stderr': ''}
+[2026-03-14 01:03:13] STOP_ALL taskkill={'returncode': 255, 'stdout': '', 'stderr': 'ERRO: o processo com PID 38056 (processo filho de PID 12460) nÆo p“de ser finalizado.\nRazÆo: NÆo h\xa0 suporte para a opera‡Æo tentada.\n\nERRO: o processo com PID 38720 (processo filho de PID 12460) nÆo p“de ser finalizado.\nRazÆo: NÆo h\xa0 suporte para a opera‡Æo tentada.'}
+[2026-03-14 01:03:14] STOP_ALL end
+[2026-03-14 10:07:59] STOP_ALL begin
+[2026-03-14 10:07:59] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-14 10:07:59] kill_by_name found_pids=[44900, 48856, 47812, 49336, 47860, 47980, 40452, 40012, 47616, 45732, 45784, 20652, 47044, 36344, 38128, 30264, 42796]
+[2026-03-14 10:07:59] kill_by_name pid=44900 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=48856 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=47812 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=49336 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=47860 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=47980 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=40452 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=40012 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=47616 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=45732 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=45784 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=20652 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=47044 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=36344 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=38128 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=30264 TerminateProcess=True
+[2026-03-14 10:07:59] kill_by_name pid=42796 TerminateProcess=True
+[2026-03-14 10:08:02] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-14 10:08:02] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-14 10:08:03] STOP_ALL end
+[2026-03-14 10:19:36] STOP_ALL begin
+[2026-03-14 10:19:36] kill_by_name SeDebugPrivilege=True target=tun2socks.exe
+[2026-03-14 10:19:36] kill_by_name found_pids=[49772, 29512, 11624, 15544, 4724, 21212, 48344, 17528, 34528, 36452, 49012, 54144, 44452, 38632, 54976, 44260, 44900]
+[2026-03-14 10:19:36] kill_by_name pid=49772 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=29512 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=11624 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=15544 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=4724 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=21212 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=48344 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=17528 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=34528 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=36452 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=49012 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=54144 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=44452 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=38632 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=54976 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=44260 TerminateProcess=True
+[2026-03-14 10:19:36] kill_by_name pid=44900 TerminateProcess=True
+[2026-03-14 10:19:37] STOP_ALL powershell={'returncode': 1, 'stdout': '', 'stderr': ''}
+[2026-03-14 10:19:38] STOP_ALL taskkill={'returncode': 128, 'stdout': '', 'stderr': 'ERRO: o processo "tun2socks.exe" nÆo foi encontrado.'}
+[2026-03-14 10:19:38] STOP_ALL end

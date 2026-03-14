@@ -1,2 +1,4 @@
 customtkinter
 pywin32
+requests
+cloudscraper
