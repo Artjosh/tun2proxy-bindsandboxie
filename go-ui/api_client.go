@@ -69,11 +69,12 @@ func (c *APIClient) CheckAdmin() (bool, error) {
 // --------------- Config ---------------
 
 type ConfigResp struct {
-	LastShortcutsDir string `json:"last_shortcuts_dir"`
-	Tun2socks        string `json:"tun2socks"`
-	Wintun           string `json:"wintun"`
-	SandboxieINI     string `json:"sandboxie_ini"`
-	SbieINIExe       string `json:"sbie_ini_exe"`
+	LastShortcutsDir       string   `json:"last_shortcuts_dir"`
+	Tun2socks              string   `json:"tun2socks"`
+	Wintun                 string   `json:"wintun"`
+	SandboxieINI           string   `json:"sandboxie_ini"`
+	SbieINIExe             string   `json:"sbie_ini_exe"`
+	SpoofWhitelistProcesses []string `json:"spoof_whitelist_processes"`
 }
 
 func (c *APIClient) GetConfig() (*ConfigResp, error) {
@@ -84,6 +85,11 @@ func (c *APIClient) GetConfig() (*ConfigResp, error) {
 
 func (c *APIClient) UpdateConfig(data map[string]string) error {
 	return c.postJSON("/api/config", data, nil)
+}
+
+func (c *APIClient) SetSpoofWhitelistProcesses(processes []string) error {
+	payload := map[string]interface{}{"spoof_whitelist_processes": processes}
+	return c.postJSON("/api/config", payload, nil)
 }
 
 type SelectFolderResp struct {
@@ -190,6 +196,19 @@ func (c *APIClient) LaunchShortcut(path string) error {
 func (c *APIClient) LaunchByName(boxName, appName string) error {
 	payload := map[string]string{"box_name": boxName, "app_name": appName}
 	return c.postJSON("/api/sandboxes/launch_by_name", payload, nil)
+}
+
+func (c *APIClient) GetSpoofWhitelist(boxName string) ([]string, error) {
+	var r struct {
+		Processes []string `json:"processes"`
+	}
+	err := c.getJSON("/api/sandboxes/spoof_whitelist?box_name="+url.QueryEscape(boxName), &r)
+	return r.Processes, err
+}
+
+func (c *APIClient) SetSpoofWhitelist(boxName string, processes []string) error {
+	payload := map[string]interface{}{"box_name": boxName, "processes": processes}
+	return c.postJSON("/api/sandboxes/spoof_whitelist", payload, nil)
 }
 
 // --------------- IP Check ---------------
